@@ -24,3 +24,15 @@ Corridor extraction
  |
  v
 Vegetation and object screening
+
+## Environment
+
+The analysis environment is fully containerized.
+
+```bash
+docker build -t lidar-corridor-analysis .
+
+docker run --rm -it \
+  -v "$PWD:/workspace" \
+  -w /workspace \
+  lidar-corridor-analysis
