@@ -1,0 +1,12 @@
+data/raw/*
+data/processed/*
+figures/*
+
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!figures/.gitkeep
+
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.DS_Store

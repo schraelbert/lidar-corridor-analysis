@@ -1,0 +1,20 @@
+name: base
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.12
+  - pdal
+  - python-pdal
+  - gdal
+  - numpy
+  - pandas
+  - geopandas
+  - shapely
+  - rasterio
+  - matplotlib
+  - jupyterlab
+  - laspy
+  - lazrs-python
+  - hdf5

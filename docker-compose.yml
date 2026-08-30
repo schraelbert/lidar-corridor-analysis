@@ -1,0 +1,10 @@
+services:
+  lidar:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+    ports:
+      - "8888:8888"
+    stdin_open: true
+    tty: true
