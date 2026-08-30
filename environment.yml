@@ -17,4 +17,3 @@ dependencies:
   - jupyterlab
   - laspy
   - lazrs-python
-  - hdf5
