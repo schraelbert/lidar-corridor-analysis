@@ -24,6 +24,7 @@ Corridor extraction
  |
  v
 Vegetation and object screening
+```
 
 ## Environment
 
@@ -36,3 +37,5 @@ docker run --rm -it \
   -v "$PWD:/workspace" \
   -w /workspace \
   lidar-corridor-analysis
+```
+
