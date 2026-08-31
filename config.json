@@ -4,6 +4,11 @@
     "chm": "data/processed/chm_72.tif"
   },
 
+  "processing": {
+    "dtm_resolution_m": 1.0,
+    "chm_resolution_m": 1.0
+  },
+
   "corridor": {
     "start": [601680, 6649250],
     "end": [602320, 6649740],
