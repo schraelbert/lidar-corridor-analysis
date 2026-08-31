@@ -4,7 +4,10 @@ figures/*
 
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+
 !figures/.gitkeep
+!figures/corridor_hotspots.png
+!figures/corridor_profile.png
 
 .ipynb_checkpoints/
 __pycache__/

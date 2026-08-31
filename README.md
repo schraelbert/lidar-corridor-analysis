@@ -37,6 +37,20 @@ Longitudinal vegetation profile
 High-vegetation hotspot screening
 ```
 
+## Example Results
+
+### High-Vegetation Hotspots
+
+The synthetic corridor is overlaid on the canopy height model, with the top-ranked vegetation hotspot segments highlighted.
+
+![High-vegetation hotspots](figures/corridor_hotspots.png)
+
+### Longitudinal Vegetation Profile
+
+Canopy height is summarized along the corridor in 10 m segments using mean, p95, and maximum height.
+
+![Longitudinal vegetation profile](figures/corridor_profile.png)
+
 ## Environment
 
 The analysis environment is containerized with Docker and built from conda-forge packages.
