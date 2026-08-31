@@ -82,6 +82,24 @@ docker run --rm -it \
   lidar-corridor-analysis
 ```
 
+## Configuration
+
+Processing and corridor-analysis parameters are centralized in `config.json`.
+
+The shared configuration defines:
+
+- input tile
+- DTM and CHM resolution
+- corridor start and end coordinates
+- corridor width
+- longitudinal segment length
+- vegetation-screening thresholds
+- hotspot ranking metric
+- number of hotspot segments
+- output paths
+
+The analysis scripts load the same configuration through `src/config.py`.
+
 ## Data
 
 The initial analysis uses airborne LiDAR data from Kartverket's national elevation-data service.
@@ -109,6 +127,8 @@ The current workflow:
 7. computes corridor-level canopy statistics
 8. builds a longitudinal vegetation profile using 10 m segments
 9. ranks high-vegetation hotspot segments using p95 canopy height
+
+PDAL processing is executed through `src/run_pdal.py`, which generates the DTM, height-above-ground point cloud, and CHM using the shared project configuration.
 
 ## Point Cloud
 
@@ -229,9 +249,7 @@ The current top-ranked hotspot segments are concentrated around:
 * 620-690 m
 * 790-806 m
 
-The hotspot ranking is intended as a vegetation-screening metric.
-
-It is not interpreted as an infrastructure-clearance assessment because no conductor geometry, tower geometry, sag model, or operational clearance threshold is included in the current workflow.
+The hotspot ranking is used for vegetation screening rather than infrastructure-clearance modelling.
 
 ## Outputs
 
@@ -262,18 +280,18 @@ Raw and processed data products are excluded from version control.
 │   ├── raw/
 │   └── processed/
 ├── figures/
-├── pipelines/
-│   ├── make_dtm.json
-│   ├── make_hag.json
-│   └── make_chm.json
 ├── src/
 │   ├── analyze_corridor.py
+│   ├── config.py
 │   ├── extract_hotspots.py
 │   ├── make_corridor.py
 │   ├── plot_corridor.py
 │   ├── plot_hotspots.py
 │   ├── profile_corridor.py
+│   ├── run_pdal.py
 │   └── summarize_hotspots.py
+├── .gitignore
+├── config.json
 ├── Dockerfile
 ├── environment.yml
 └── README.md
