@@ -1,23 +1,36 @@
 import pandas as pd
 
-
-INPUT = "data/processed/corridor_profile.csv"
-OUTPUT = "data/processed/top_hotspots.csv"
-TOP_N = 10
+from config import load_config, project_path
 
 
-df = pd.read_csv(INPUT)
+cfg = load_config()
+
+input_path = project_path(
+    cfg["outputs"]["profile_csv"]
+)
+
+output_path = project_path(
+    cfg["outputs"]["hotspot_csv"]
+)
+
+top_n = cfg["screening"]["top_n"]
+metric = cfg["screening"]["hotspot_metric"]
+
+df = pd.read_csv(input_path)
 
 top = (
-    df.sort_values("p95_m", ascending=False)
-      .head(TOP_N)
-      .copy()
+    df.sort_values(
+        metric,
+        ascending=False,
+    )
+    .head(top_n)
+    .copy()
 )
 
 top.insert(
     0,
     "rank",
-    range(1, len(top) + 1)
+    range(1, len(top) + 1),
 )
 
 columns = [
@@ -33,11 +46,11 @@ columns = [
 top = top[columns]
 
 top.to_csv(
-    OUTPUT,
+    output_path,
     index=False,
-    float_format="%.2f"
+    float_format="%.2f",
 )
 
 print(top.to_string(index=False))
 print()
-print(f"Saved: {OUTPUT}")
+print(f"Saved: {output_path}")

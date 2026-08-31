@@ -1,0 +1,27 @@
+{
+  "input": {
+    "tile": "72",
+    "chm": "data/processed/chm_72.tif"
+  },
+
+  "corridor": {
+    "start": [601680, 6649250],
+    "end": [602320, 6649740],
+    "width_m": 40.0,
+    "segment_length_m": 10.0
+  },
+
+  "screening": {
+    "height_thresholds_m": [10, 15, 20, 25],
+    "hotspot_metric": "p95_m",
+    "top_n": 10
+  },
+
+  "outputs": {
+    "centerline": "data/processed/corridor_centerline.gpkg",
+    "corridor": "data/processed/corridor_buffer.gpkg",
+    "profile_csv": "data/processed/corridor_profile.csv",
+    "hotspots": "data/processed/corridor_hotspots.gpkg",
+    "hotspot_csv": "data/processed/top_hotspots.csv"
+  }
+}

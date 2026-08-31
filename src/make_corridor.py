@@ -1,15 +1,22 @@
-from pathlib import Path
-
 import geopandas as gpd
 from shapely.geometry import LineString
 
-out = Path("data/processed")
-out.mkdir(parents=True, exist_ok=True)
+from config import load_config, project_path
 
-line = LineString([
-    (601680, 6649250),
-    (602320, 6649740),
-])
+
+cfg = load_config()
+
+start = cfg["corridor"]["start"]
+end = cfg["corridor"]["end"]
+width = cfg["corridor"]["width_m"]
+half_width = width / 2.0
+
+centerline_path = project_path(cfg["outputs"]["centerline"])
+corridor_path = project_path(cfg["outputs"]["corridor"])
+
+centerline_path.parent.mkdir(parents=True, exist_ok=True)
+
+line = LineString([start, end])
 
 centerline = gpd.GeoDataFrame(
     {"name": ["synthetic_corridor"]},
@@ -18,10 +25,17 @@ centerline = gpd.GeoDataFrame(
 )
 
 corridor = centerline.copy()
-corridor["geometry"] = corridor.buffer(20)
+corridor["geometry"] = corridor.buffer(half_width)
 
-centerline.to_file(out / "corridor_centerline.gpkg", driver="GPKG")
-corridor.to_file(out / "corridor_buffer.gpkg", driver="GPKG")
+centerline.to_file(
+    centerline_path,
+    driver="GPKG",
+)
+
+corridor.to_file(
+    corridor_path,
+    driver="GPKG",
+)
 
 print(f"Centerline length: {line.length:.1f} m")
-print("Corridor width: 40 m")
+print(f"Corridor width: {width:.1f} m")
